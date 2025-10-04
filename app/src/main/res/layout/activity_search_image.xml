@@ -2,274 +2,140 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:background="#2B1B18"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".SearchImageActivity">
 
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back"
-        app:tint="@android:color/white"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="12dp"
-        android:contentDescription="Volver"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Identificar plaga"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
-        app:layout_constraintBottom_toBottomOf="@id/btnBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/actionIconsContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="48dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnGallery"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            app:cardBackgroundColor="#3B2521"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="0dp"
-            android:layout_marginEnd="20dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_gallery"
-                android:padding="14dp"
-                app:tint="@android:color/white"
-                android:contentDescription="Abrir galería"/>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnTakePhoto"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            app:cardBackgroundColor="#3B2521"
-            app:cardCornerRadius="36dp"
-            app:cardElevation="0dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_camera_24"
-                android:padding="18dp"
-                app:tint="@android:color/white"
-                android:contentDescription="Tomar foto"/>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnHistory"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            app:cardBackgroundColor="#3B2521"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="0dp"
-            android:layout_marginStart="20dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_history"
-                android:padding="14dp"
-                app:tint="@android:color/white"
-                android:contentDescription="Historial"/>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <View
+    <androidx.camera.view.PreviewView
         android:id="@+id/cameraPreview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/actionIconsContainer"
-        app:layout_constraintBottom_toTopOf="@id/tvFocusHint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvFocusHint"
+    <ImageView
+        android:id="@+id/viewfinder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="32dp"
+        android:src="@drawable/ic_viewfinder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
+        android:contentDescription="Guía de enfoque" />
+
+    <ImageButton
+        android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enfoca bien al insecto"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/menuInferior"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        android:src="@drawable/ic_close"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
+        android:contentDescription="Cerrar" />
 
-    <!-- Barra de navegación inferior -->
-    <RelativeLayout
-        android:id="@+id/menuInferior"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
+    <ImageButton
+        android:id="@+id/btnFlash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        android:src="@drawable/ic_flash_off"
+        app:layout_constraintBottom_toBottomOf="@id/btnClose"
+        app:layout_constraintEnd_toStartOf="@id/btnSwitchCamera"
+        app:layout_constraintTop_toTopOf="@id/btnClose"
+        app:tint="@color/white"
+        android:contentDescription="Flash" />
+
+    <ImageButton
+        android:id="@+id/btnSwitchCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="12dp"
+        android:src="@drawable/ic_switch_camera"
+        app:layout_constraintBottom_toBottomOf="@id/btnClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnClose"
+        app:tint="@color/white"
+        android:contentDescription="Cambiar cámara" />
+
+    <LinearLayout
+        android:id="@+id/bottomControls"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#3B2521">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <!-- LinearLayout para los elementos normales del menú -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:id="@+id/btnGallery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <!-- Inicio -->
-            <LinearLayout
-                android:id="@+id/nav_inicio"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/ic_gallery"
+                android:background="@drawable/bg_camera_button_transparent"
+                android:padding="12dp"
+                app:tint="@color/white"/>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_home_24"
-                    android:contentDescription="Inicio" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Inicio"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Búsqueda Normal -->
-            <LinearLayout
-                android:id="@+id/nav_busqueda_normal"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_search_24"
-                    android:contentDescription="Búsqueda" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Búsqueda"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Espacio para el botón central de cámara -->
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent" />
-
-            <!-- Pro (con icono de búsqueda pro) -->
-            <LinearLayout
-                android:id="@+id/nav_busqueda_pro"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_search_pro_24"
-                    android:contentDescription="Pro" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pro"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Ajustes -->
-            <LinearLayout
-                android:id="@+id/nav_ajustes"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_settings_24"
-                    android:contentDescription="Ajustes" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ajustes"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Galería"
+                android:textColor="@color/white" />
         </LinearLayout>
 
-        <!-- Botón de cámara central flotante -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/nav_camera"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_camera_24"
-            android:contentDescription="Cámara"
-            app:backgroundTint="#E94343"
-            app:tint="@color/white"
-            app:elevation="8dp"
-            app:borderWidth="0dp"
-            android:clickable="true"
-            android:focusable="true" />
+        <View
+            android:id="@+id/btnShutter"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_shutter_button" />
 
-    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/btnTips"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/ic_question_mark"
+                android:background="@drawable/bg_camera_button_transparent"
+                android:padding="12dp"
+                app:tint="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Consejos"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

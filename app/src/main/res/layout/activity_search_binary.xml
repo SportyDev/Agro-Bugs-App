@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#2B1B18"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     tools:context=".SearchBinaryActivity">
 
     <ImageButton
@@ -20,14 +20,14 @@
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@android:color/white" />
+        app:tint="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Identificar plaga"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
@@ -42,7 +42,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="Paso 1 de 5"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
@@ -55,12 +55,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:progress="20"
-        android:progressDrawable="@drawable/progress_bar_custom"
+        android:progressTint="?attr/colorSecondary"
+        android:progressBackgroundTint="@color/inactive_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvStepCounter"
         app:layout_constraintTop_toBottomOf="@id/tvStepCounter" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/imageCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -68,7 +69,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
+        app:cardElevation="4dp"
         app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,204 +106,209 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:gravity="center"
                 android:text="¿La plaga es visible a simple vista?"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.appcompat.widget.AppCompatButton
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnYes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_background_primary"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="Sí"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:backgroundTint="?attr/colorSecondary"
+        app:cornerRadius="12dp"
         app:layout_constraintEnd_toStartOf="@+id/btnNo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnNo" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNo"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/button_background_secondary"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="No"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="?attr/colorPrimary"
         android:textSize="18sp"
+        app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnYes"
-        app:layout_constraintTop_toBottomOf="@id/imageCard" />
+        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        app:strokeColor="?attr/colorPrimary" />
 
 
-    <!-- Barra de navegación inferior -->
-    <RelativeLayout
-        android:id="@+id/menuInferior"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomNavBarCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/colorSurface"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#3B2521">
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumRoundedTop">
 
-        <!-- LinearLayout para los elementos normales del menú -->
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/menuInferior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:layout_height="72dp">
 
-            <!-- Inicio -->
             <LinearLayout
-                android:id="@+id/nav_inicio"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_home_24"
-                    android:contentDescription="Inicio" />
+                <LinearLayout
+                    android:id="@+id/nav_inicio"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Inicio"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Inicio"
+                        android:src="@drawable/ic_home_24"
+                        app:tint="@color/inactive_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Inicio"
+                        android:textColor="@color/inactive_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/nav_busqueda_normal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Búsqueda"
+                        android:src="@drawable/ic_search_24"
+                        app:tint="@color/inactive_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Búsqueda"
+                        android:textColor="@color/inactive_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/nav_busqueda_pro"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Pro"
+                        android:src="@drawable/ic_search_pro_24"
+                        app:tint="?attr/colorSecondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Pro"
+                        android:textColor="?attr/colorSecondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/nav_ajustes"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="Ajustes"
+                        android:src="@drawable/ic_settings_24"
+                        app:tint="@color/inactive_gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Ajustes"
+                        android:textColor="@color/inactive_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
-            <!-- Búsqueda Normal -->
-            <LinearLayout
-                android:id="@+id/nav_busqueda_normal"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/nav_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="Cámara"
+                android:src="@drawable/ic_camera_24"
+                app:backgroundTint="?attr/colorSecondary"
+                app:borderWidth="0dp"
+                app:elevation="8dp"
+                app:tint="?attr/colorOnSecondary" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_search_24"
-                    android:contentDescription="Búsqueda" />
+        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Búsqueda"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Espacio para el botón central de cámara -->
-            <View
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent" />
-
-            <!-- Pro (con icono de búsqueda pro) -->
-            <LinearLayout
-                android:id="@+id/nav_busqueda_pro"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_search_pro_24"
-                    android:contentDescription="Pro" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pro"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Ajustes -->
-            <LinearLayout
-                android:id="@+id/nav_ajustes"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_settings_24"
-                    android:contentDescription="Ajustes" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ajustes"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- Botón de cámara central flotante -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/nav_camera"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_camera_24"
-            android:contentDescription="Cámara"
-            app:backgroundTint="#E94343"
-            app:tint="@color/white"
-            app:elevation="8dp"
-            app:borderWidth="0dp"
-            android:clickable="true"
-            android:focusable="true" />
-
-    </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

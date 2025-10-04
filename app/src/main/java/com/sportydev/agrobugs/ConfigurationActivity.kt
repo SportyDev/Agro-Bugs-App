@@ -4,45 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class SearchManuallyActivity : BaseActivity() {
+class ConfigurationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_search_manually)
+        setContentView(R.layout.activity_configuration)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // Configura los listeners para las tarjetas y la barra de navegación
-        setupCardClickListeners()
         setupBottomNavigation()
+
     }
-
-    /**
-     * Configura los listeners para cada CardView de plaga.
-     */
-    private fun setupCardClickListeners() {
-        findViewById<CardView>(R.id.cardMoscaBlanca).setOnClickListener { navigateToBugInfo("Mosca blanca") }
-        findViewById<CardView>(R.id.cardPulgon).setOnClickListener { navigateToBugInfo("Pulgón") }
-        findViewById<CardView>(R.id.cardTrips).setOnClickListener { navigateToBugInfo("Trips") }
-        findViewById<CardView>(R.id.cardAranaRoja).setOnClickListener { navigateToBugInfo("Araña roja") }
-        findViewById<CardView>(R.id.cardMinador).setOnClickListener { navigateToBugInfo("Minador de hojas") }
-    }
-
-    /**
-     * Configura los listeners para la barra de navegación inferior.
-     */
-
     private fun setupBottomNavigation() {
         // Botón de Inicio -> Regresa al MainActivity
         findViewById<LinearLayout>(R.id.nav_inicio).setOnClickListener {
@@ -52,9 +32,10 @@ class SearchManuallyActivity : BaseActivity() {
             overridePendingTransition(0, 0)
         }
 
-        // Botón de Búsqueda Normal -> No hace nada porque ya estamos aquí
+        // Botón de Búsqueda Normal ->
         findViewById<LinearLayout>(R.id.nav_busqueda_normal).setOnClickListener {
-            // No se necesita acción
+            startActivity(Intent(this, SearchManuallyActivity::class.java))
+            overridePendingTransition(0, 0)
         }
 
         // Botón de Cámara (FloatingActionButton) -> SearchImageActivity
@@ -71,16 +52,8 @@ class SearchManuallyActivity : BaseActivity() {
 
         // Botón de Ajustes -> ConfigurationActivity
         findViewById<LinearLayout>(R.id.nav_ajustes).setOnClickListener {
-            startActivity(Intent(this, ConfigurationActivity::class.java))
-            overridePendingTransition(0, 0)
+            
         }
     }
-    /**
-     * Navega a InformationBugActivity pasando el nombre de la plaga.
-     */
-    private fun navigateToBugInfo(bugName: String) {
-        val intent = Intent(this, InformationBugActivity::class.java)
-        intent.putExtra("BUG_NAME", bugName)
-        startActivity(intent)
-    }
+
 }
