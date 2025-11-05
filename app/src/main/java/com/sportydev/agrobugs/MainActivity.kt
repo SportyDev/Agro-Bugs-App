@@ -22,8 +22,8 @@ class MainActivity : BaseActivity() {
 
         // La instancia de AdminBd puede ser nula si la base de datos no es necesaria en el onCreate
         // Considera inicializarla solo si se va a usar.
-        // admin = AdminBd(this)
-        // admin.writableDatabase
+//        admin = AdminBd(this)
+//        admin.writableDatabase
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

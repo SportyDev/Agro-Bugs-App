@@ -1,5 +1,6 @@
 package com.sportydev.agrobugs
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -60,6 +61,65 @@ class AdminBd(private val contexto: Context) : SQLiteOpenHelper(contexto, DATABA
     }
 
     override fun onCreate(db: SQLiteDatabase?) {}
+    @SuppressLint("Range")
+    fun getPestById(id: Int): Plaga? {
+        var plaga: Plaga? = null
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM Plaga WHERE idPlaga = ?", arrayOf(id.toString()))
+
+        if (cursor.moveToFirst()) {
+            // Obtenemos el texto con los nombres de las imágenes y lo convertimos a lista
+            val imagesString = cursor.getString(cursor.getColumnIndex("imageName"))
+            // Mapeamos las columnas de la BD a las propiedades del data class
+
+            plaga = Plaga(
+                idPlaga = cursor.getInt(cursor.getColumnIndex("idPlaga")),
+                nomPlaga = cursor.getString(cursor.getColumnIndex("nomPlaga")),
+                nomcientifico = cursor.getString(cursor.getColumnIndex("nomCientifico")),
+                descPlaga = cursor.getString(cursor.getColumnIndex("descPlaga")),
+                imageName = imagesString.split(','),
+
+                damage = cursor.getString(cursor.getColumnIndex("damage")),
+                muestreo = cursor.getString(cursor.getColumnIndex("muestreo")),
+                biolControl = cursor.getString(cursor.getColumnIndex("biolControl")),
+                cultControl = cursor.getString(cursor.getColumnIndex("cultControl")),
+                etolControl = cursor.getString(cursor.getColumnIndex("etolControl")),
+                quimControl = cursor.getString(cursor.getColumnIndex("quimControl")),
+                resistManejo = cursor.getString(cursor.getColumnIndex("resistManejo"))
+            )
+        }
+
+        cursor.close()
+        return plaga
+    }
+
+    @SuppressLint("Range")
+    fun getAllPests(): List<Plaga> {
+        val pestList = mutableListOf<Plaga>()
+        val db = this.readableDatabase
+        // Asegúrate de que el nombre de la tabla "pests" y los nombres de las columnas son correctos
+        val cursor = db.rawQuery("SELECT * FROM Plaga", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val imagesString = cursor.getString(cursor.getColumnIndex("imageName"))
+
+                val Plaga = Plaga(
+                    idPlaga = cursor.getInt(cursor.getColumnIndex("idPlaga")),
+                    nomPlaga = cursor.getString(cursor.getColumnIndex("nomPlaga")),
+                    nomcientifico = cursor.getString(cursor.getColumnIndex("nomCientifico")),
+                    descPlaga = cursor.getString(cursor.getColumnIndex("descPlaga")),
+                    imageName = imagesString.split(',')
+                )
+                pestList.add(Plaga)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+//        db.close()
+        return pestList
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
+
 }

@@ -20,6 +20,10 @@
 
     </style>
 
+    <style name="MyGreenFilterChip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">#E5F4EF</item>
+    </style>
+
     <style name="Theme.AgroBugs" parent="Base.Theme.AgroBugs" />
 
 

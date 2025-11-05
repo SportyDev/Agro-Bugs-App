@@ -2,17 +2,22 @@ package com.sportydev.agrobugs
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class SearchManuallyActivity : BaseActivity() {
+// 1. AÑADIMOS LA INTERFAZ DEL ADAPTADOR AQUÍ
+class SearchManuallyActivity : BaseActivity(), PlagaAdapter.OnItemClickListener {
+
+    private lateinit var pestsRecyclerView: RecyclerView
+    private lateinit var pestAdapter: PlagaAdapter
+    private var pestList = listOf<Plaga>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,64 +28,56 @@ class SearchManuallyActivity : BaseActivity() {
             insets
         }
 
-        // Configura los listeners para las tarjetas y la barra de navegación
-        setupCardClickListeners()
+        pestsRecyclerView = findViewById(R.id.pestsRecyclerView)
+        pestsRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        loadPestsFromDb()
+//        Toast.makeText(this, "Plagas encontradas: ${pestList.size}", Toast.LENGTH_LONG).show()
+
+        pestAdapter = PlagaAdapter(this, pestList, this)
+        pestsRecyclerView.adapter = pestAdapter
+
         setupBottomNavigation()
     }
 
-    /**
-     * Configura los listeners para cada CardView de plaga.
-     */
-    private fun setupCardClickListeners() {
-        findViewById<CardView>(R.id.cardMoscaBlanca).setOnClickListener { navigateToBugInfo("Mosca blanca") }
-        findViewById<CardView>(R.id.cardPulgon).setOnClickListener { navigateToBugInfo("Pulgón") }
-        findViewById<CardView>(R.id.cardTrips).setOnClickListener { navigateToBugInfo("Trips") }
-        findViewById<CardView>(R.id.cardAranaRoja).setOnClickListener { navigateToBugInfo("Araña roja") }
-        findViewById<CardView>(R.id.cardMinador).setOnClickListener { navigateToBugInfo("Minador de hojas") }
+    override fun onItemClick(pest: Plaga) {
+        val intent = Intent(this, InformationBugActivity::class.java).apply {
+            putExtra(InformationBugActivity.EXTRA_PLAGA_ID, pest.idPlaga)
+        }
+        startActivity(intent)
     }
 
-    /**
-     * Configura los listeners para la barra de navegación inferior.
-     */
+    private fun loadPestsFromDb() {
+        val dbHelper = AdminBd(this)
+        try {
+            pestList = dbHelper.getAllPests()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     private fun setupBottomNavigation() {
-        // Botón de Inicio -> Regresa al MainActivity
         findViewById<LinearLayout>(R.id.nav_inicio).setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
             overridePendingTransition(0, 0)
         }
-
-        // Botón de Búsqueda Normal -> No hace nada porque ya estamos aquí
         findViewById<LinearLayout>(R.id.nav_busqueda_normal).setOnClickListener {
-            // No se necesita acción
         }
-
-        // Botón de Cámara (FloatingActionButton) -> SearchImageActivity
         findViewById<FloatingActionButton>(R.id.nav_camera).setOnClickListener {
             startActivity(Intent(this, SearchImageActivity::class.java))
             overridePendingTransition(0, 0)
         }
-
-        // Botón Pro -> SearchBinaryActivity
         findViewById<LinearLayout>(R.id.nav_busqueda_pro).setOnClickListener {
             startActivity(Intent(this, SearchBinaryActivity::class.java))
             overridePendingTransition(0, 0)
         }
-
-        // Botón de Ajustes -> ConfigurationActivity
         findViewById<LinearLayout>(R.id.nav_ajustes).setOnClickListener {
             startActivity(Intent(this, ConfigurationActivity::class.java))
             overridePendingTransition(0, 0)
         }
     }
-    /**
-     * Navega a InformationBugActivity pasando el nombre de la plaga.
-     */
-    private fun navigateToBugInfo(bugName: String) {
-        val intent = Intent(this, InformationBugActivity::class.java)
-        intent.putExtra("BUG_NAME", bugName)
-        startActivity(intent)
-    }
+
+
 }

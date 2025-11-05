@@ -8,7 +8,6 @@
     android:background="?android:attr/colorBackground"
     tools:context=".SearchManuallyActivity">
 
-
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -20,8 +19,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/searchBarCard"
@@ -38,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
         <EditText
+            android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -74,36 +73,36 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_all"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/MyGreenFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Todas"
-                android:backgroundTint="#E5F4EF"
                 android:checked="true"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_insects"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/MyGreenFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Insectos"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_mites"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/MyGreenFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ácaros"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_nematodes"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/MyGreenFilterChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nematodos"/>
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
+
     <TextView
         android:id="@+id/tvSectionTitle"
         android:layout_width="wrap_content"
@@ -115,322 +114,33 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/categoryScrollView" /> <ScrollView
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:layout_marginTop="16dp"
-    android:scrollbars="none"
-    app:layout_constraintBottom_toTopOf="@+id/bottomNavBarCard"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/tvSectionTitle">
+        app:layout_constraintTop_toBottomOf="@id/categoryScrollView" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pestsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:paddingBottom="16dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardMoscaBlanca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="?attr/colorSurface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gusano Cogollero"
-                        android:textColor="?attr/colorOnSurface" />
-                    <TextView
-                        style="@style/TextAppearance.Material3.LabelSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Spodoptera frugiperda"
-                        android:textColor="?attr/colorPrimary" />
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="principales enemigos del cultivo de maíz. Se mueve con facilidad entre las plantas, y como polilla adulta puede desplazarse hasta 100 kilómetros en una noche."
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_cogollero1"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CornerRadius8"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardPulgon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="?attr/colorSurface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pulgón"
-                        android:textColor="?attr/colorOnSurface" />
-                    <TextView
-                        style="@style/TextAppearance.Material3.LabelSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aphis gossypii"
-                        android:textColor="?attr/colorPrimary" />
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Insectos pequeños que se alimentan de la savia y pueden transmitir enfermedades."
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_pulgon"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CornerRadius8"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardTrips"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="?attr/colorSurface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Trips"
-                        android:textColor="?attr/colorOnSurface" />
-                    <TextView
-                        style="@style/TextAppearance.Material3.LabelSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Frankliniella occidentalis"
-                        android:textColor="?attr/colorPrimary" />
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Insectos diminutos que causan daños al alimentarse de flores y hojas."
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_trips"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CornerRadius8"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardAranaRoja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="?attr/colorSurface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Araña roja"
-                        android:textColor="?attr/colorOnSurface" />
-                    <TextView
-                        style="@style/TextAppearance.Material3.LabelSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tetranychus urticae"
-                        android:textColor="?attr/colorPrimary" />
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Pequeños ácaros que causan daños a las plantas al alimentarse de sus células."
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_arana_roja"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CornerRadius8"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardMinador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="?attr/colorSurface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.TitleLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Minador de hojas"
-                        android:textColor="?attr/colorOnSurface" />
-                    <TextView
-                        style="@style/TextAppearance.Material3.LabelSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Liriomyza spp."
-                        android:textColor="?attr/colorPrimary" />
-
-                    <TextView
-                        style="@style/TextAppearance.Material3.BodyMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Larvas de insectos que se alimentan del tejido interno de las hojas."
-                        android:textColor="?attr/colorOnSurface" />
-                </LinearLayout>
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_minador"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.App.CornerRadius8"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-</ScrollView>
-
+        android:paddingBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBarCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSectionTitle"
+        tools:listitem="@layout/item_plaga" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavBarCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:cardBackgroundColor="?attr/colorSurface"
         app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.App.MediumRoundedTop">
 
         <RelativeLayout
@@ -441,120 +151,120 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/nav_inicio"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_home_24"
                         android:contentDescription="Inicio"
-                        app:tint="@color/inactive_gray"/>
+                        android:src="@drawable/ic_home_24"
+                        app:tint="@color/inactive_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:text="Inicio"
                         android:textColor="@color/inactive_gray"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/nav_busqueda_normal"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_search_24"
                         android:contentDescription="Búsqueda"
-                        app:tint="?attr/colorSecondary"/>
+                        android:src="@drawable/ic_search_24"
+                        app:tint="?attr/colorSecondary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:text="Búsqueda"
                         android:textColor="?attr/colorSecondary"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:id="@+id/nav_busqueda_pro"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_search_pro_24"
                         android:contentDescription="Pro"
-                        app:tint="@color/inactive_gray"/>
+                        android:src="@drawable/ic_search_pro_24"
+                        app:tint="@color/inactive_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:text="Pro"
                         android:textColor="@color/inactive_gray"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/nav_ajustes"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackground">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_settings_24"
                         android:contentDescription="Ajustes"
-                        app:tint="@color/inactive_gray"/>
+                        android:src="@drawable/ic_settings_24"
+                        app:tint="@color/inactive_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:text="Ajustes"
                         android:textColor="@color/inactive_gray"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -564,12 +274,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_camera_24"
                 android:contentDescription="Cámara"
+                android:src="@drawable/ic_camera_24"
                 app:backgroundTint="?attr/colorSecondary"
-                app:tint="?attr/colorOnSecondary"
+                app:borderWidth="0dp"
                 app:elevation="8dp"
-                app:borderWidth="0dp" />
+                app:tint="?attr/colorOnSecondary" />
 
         </RelativeLayout>
 

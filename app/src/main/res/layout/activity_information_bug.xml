@@ -27,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_cogollero1"
+                android:src="@drawable/img_cogollero"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -71,15 +71,18 @@
                 app:cardBackgroundColor="#66000000"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp"                                      app:strokeColor="@android:color/transparent"             app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@android:color/transparent"
+                app:strokeWidth="0dp">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="Volver atrás"
                     android:padding="12dp"
-                    android:src="@drawable/ic_arrow_back" app:tint="@android:color/white"
-                    android:contentDescription="Volver atrás" />
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="@android:color/white" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -91,16 +94,19 @@
                 app:cardBackgroundColor="#66000000"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="0dp"                                      app:strokeColor="@android:color/transparent"             app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@android:color/transparent"
+                app:strokeWidth="0dp">
 
                 <ImageView
                     android:id="@+id/ivFavorite"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="Agregar a favoritos"
                     android:padding="12dp"
-                    android:src="@drawable/ic_favorite" app:tint="@android:color/white"
-                    android:contentDescription="Agregar a favoritos" />
+                    android:src="@drawable/ic_favorite"
+                    app:tint="@android:color/white" />
             </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -109,8 +115,8 @@
             android:id="@+id/tvBugName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
             android:text="Gusano Cogollero"
             android:textAppearance="?attr/textAppearanceHeadlineSmall"
             android:textColor="?attr/colorOnBackground"
@@ -120,27 +126,27 @@
             android:id="@+id/tvScientificName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="4dp"
             android:paddingBottom="16dp"
             android:text="Spodoptera frugiperda"
             android:textAppearance="?attr/textAppearanceTitleMedium"
             android:textColor="?attr/colorPrimary"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
     </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/bottom_section_coordinator"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/mainHeader"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/mainHeader">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="80dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,18 +158,52 @@
                     android:id="@+id/tvBugDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
                     android:text="El gusano cogollero es una de las plagas más destructivas para el maíz. Las larvas se alimentan de las hojas y, en etapas avanzadas, del cogollo de la planta, causando daños severos."
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="CICLO DE VIDA"
+                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:textColor="?attr/colorSecondary" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="12dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/llLifeCycleContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <include layout="@layout/item_life_cycle_stage" />
+
+                        <include layout="@layout/item_life_cycle_stage" />
+
+                        <include layout="@layout/item_life_cycle_stage" />
+
+                        <include layout="@layout/item_life_cycle_stage" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
                     android:orientation="vertical"
-                    android:paddingHorizontal="16dp"
-                    android:layout_marginTop="24dp">
+                    android:paddingHorizontal="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -172,20 +212,33 @@
                         android:text="DAÑOS Y MUESTREO"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
                         android:textColor="?attr/colorSecondary" />
+
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:cardElevation="2dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingVertical="8dp">
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemDamage" />
-                            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="16dp"/>
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemSampling"/>
+
+                            <include
+                                android:id="@+id/itemDamage"
+                                layout="@layout/item_info_bug" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:background="?attr/colorOutlineVariant" />
+
+                            <include
+                                android:id="@+id/itemSampling"
+                                layout="@layout/item_info_bug" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -197,24 +250,53 @@
                         android:text="TIPOS DE CONTROL"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
                         android:textColor="?attr/colorSecondary" />
+
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:cardElevation="2dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingVertical="8dp">
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemControlBiological"/>
-                            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="16dp"/>
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemControlCultural"/>
-                            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="16dp"/>
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemControlEthological"/>
-                            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="?attr/colorOutlineVariant" android:layout_marginHorizontal="16dp"/>
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemControlChemical"/>
+
+                            <include
+                                android:id="@+id/itemControlBiological"
+                                layout="@layout/item_info_bug" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:background="?attr/colorOutlineVariant" />
+
+                            <include
+                                android:id="@+id/itemControlCultural"
+                                layout="@layout/item_info_bug" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:background="?attr/colorOutlineVariant" />
+
+                            <include
+                                android:id="@+id/itemControlEthological"
+                                layout="@layout/item_info_bug" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:background="?attr/colorOutlineVariant" />
+
+                            <include
+                                android:id="@+id/itemControlChemical"
+                                layout="@layout/item_info_bug" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -226,18 +308,23 @@
                         android:text="MANEJO DE RESISTENCIA"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
                         android:textColor="?attr/colorSecondary" />
+
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurface"
                         app:cardCornerRadius="16dp"
-                        app:cardElevation="2dp"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:cardElevation="2dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingVertical="8dp">
-                            <include layout="@layout/item_info_bug" android:id="@+id/itemResistance"/>
+
+                            <include
+                                android:id="@+id/itemResistance"
+                                layout="@layout/item_info_bug" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -245,27 +332,16 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSavePest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_margin="16dp"
-            android:padding="14dp"
-            android:text="Guardar Plaga"
-            android:textSize="16sp"
-            app:backgroundTint="?attr/colorSecondary"
-            app:cornerRadius="12dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/bottomSheetCard"
             style="?attr/materialCardViewElevatedStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-            app:behavior_peekHeight="300dp"
             app:behavior_hideable="true"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.MediumComponent"            >
+            app:behavior_peekHeight="300dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.MediumComponent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -276,6 +352,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp">
+
                     <TextView
                         android:id="@+id/tvSheetTitle"
                         android:layout_width="wrap_content"
@@ -287,6 +364,7 @@
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         android:textColor="?attr/colorOnSurface"
                         android:textStyle="bold" />
+
                     <ImageButton
                         android:id="@+id/btnCloseSheet"
                         android:layout_width="32dp"
@@ -302,6 +380,7 @@
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -316,9 +395,8 @@
                             android:layout_height="180dp"
                             android:layout_marginBottom="16dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/img_cogollero1"
-                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.MediumComponent"
-                            />
+                            android:src="@drawable/img_cogollero"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.MediumComponent" />
 
                         <TextView
                             android:id="@+id/tvSheetContent"
