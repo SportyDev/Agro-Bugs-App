@@ -18,6 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroBugs">
         <activity
+            android:name=".MonitoringSetupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddParcelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ParcelDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonitoringDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ConfigurationActivity"
             android:exported="false" />
         <activity

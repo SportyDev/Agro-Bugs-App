@@ -76,7 +76,7 @@
                         android:id="@+id/tvScanTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Escanear plaga con la cámara"
+                        android:text="Escanear plaga"
                         android:textAppearance="?attr/textAppearanceTitleLarge"
                         android:textColor="?attr/colorSecondary"
                         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Usa tu cámara para identificar una plaga al instante."
+                        android:text="Identifica bichos al instante con IA."
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintTop_toBottomOf="@id/tvScanTitle"
@@ -109,10 +109,76 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBitacora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="#F1F8E9"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivBitacoraIcon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bitácora de Muestreo"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textStyle="bold"
+                            android:textColor="#33691E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Registra tus muestreos '5 de Oros' o 'ZigZag'."
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnNuevoMuestreo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Nuevo Registro"
+                            android:textSize="12sp"
+                            app:backgroundTint="#33691E"
+                            android:textColor="@android:color/white"
+                            style="@style/Widget.Material3.Button.TonalButton"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivBitacoraIcon"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        app:tint="#33691E"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
@@ -142,6 +208,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Búsqueda Guiada"
+                            android:gravity="center"
                             android:textAppearance="?attr/textAppearanceLabelLarge"
                             android:textColor="?attr/colorOnSurface" />
                     </LinearLayout>
@@ -229,7 +296,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Estos pequeños insectos se alimentan de la savia de las plantas, debilitándolas y transmitiendo enfermedades."
+                            android:text="Estos pequeños insectos se alimentan de la savia de las plantas."
                             android:textColor="?attr/colorOnSurface"
                             android:maxLines="3"
                             android:ellipsize="end"/>
@@ -280,12 +347,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="16dp"
-                        android:text="Rota tus cultivos para interrumpir el ciclo de vida de las plagas del suelo."
+                        android:text="Rota tus cultivos para interrumpir el ciclo de vida de las plagas."
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurface"/>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -351,31 +419,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Araña Roja"
-                                android:padding="8dp"
-                                android:textAppearance="?attr/textAppearanceLabelMedium"
-                                android:textColor="?attr/colorOnSurface"/>
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurface"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="2dp">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:src="@drawable/img_trips"
-                                android:scaleType="centerCrop"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Trips"
                                 android:padding="8dp"
                                 android:textAppearance="?attr/textAppearanceLabelMedium"
                                 android:textColor="?attr/colorOnSurface"/>
@@ -469,7 +512,7 @@
                     android:layout_weight="1" />
 
                 <LinearLayout
-                    android:id="@+id/nav_busqueda_pro"
+                    android:id="@+id/nav_bitacora"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -482,15 +525,15 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:contentDescription="Pro"
-                        android:src="@drawable/ic_search_pro_24"
+                        android:contentDescription="Monitoreo"
+                        android:src="@drawable/ic_assignment_24"
                         app:tint="@color/inactive_gray" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Pro"
+                        android:text="Monitoreo"
                         android:textColor="@color/inactive_gray"
                         android:textSize="12sp" />
                 </LinearLayout>

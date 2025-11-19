@@ -59,6 +59,11 @@ class MainActivity : BaseActivity() {
             overridePendingTransition(0, 0)
 
         }
+        val cardBitacora = findViewById<MaterialCardView>(R.id.cardBitacora)
+        cardBitacora.setOnClickListener {
+            val intent = Intent(this, MonitoringDashboardActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }
@@ -85,8 +90,8 @@ class MainActivity : BaseActivity() {
         }
 
         // Botón Pro -> SearchBinaryActivity
-        findViewById<LinearLayout>(R.id.nav_busqueda_pro).setOnClickListener {
-            startActivity(Intent(this, SearchBinaryActivity::class.java))
+        findViewById<LinearLayout>(R.id.nav_bitacora).setOnClickListener {
+            startActivity(Intent(this, MonitoringDashboardActivity::class.java))
             overridePendingTransition(0, 0)
         }
 
